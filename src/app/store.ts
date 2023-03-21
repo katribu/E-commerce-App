@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import  userReducer from '../features/users';
+import themeReducer from '../features/theme'
 
 export const store = configureStore({
   reducer: {
   user: userReducer,
+  theme: themeReducer,
   },
 });
 
