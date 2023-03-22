@@ -24,10 +24,13 @@ export default function Login() {
                 <Header/>
             </div>
 
-            <div className={`second-container ${mode? theme : ""}`}>
+            <div className={`second-container ${mode? theme : "light-mode"}`}>
                 <div className="login-input-div">
                     <input type="email" placeholder="Email" onChange={handleEmailInput} />
                     <input type="password" placeholder="Password" onChange={handlePassInput}  />
+                </div>
+                <div>
+                    <Link to={"/createuser"} className="create-user-link">Create user</Link>
                 </div>
                 <div className="login-link-div">
                     <Link 
@@ -37,6 +40,7 @@ export default function Login() {
                     >Log In 
                     </Link>
                 </div>
+
             </div>
             
             

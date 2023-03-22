@@ -9,13 +9,14 @@ body, html {
 
 /* MAIN CONTAINER STYLES */
 
-.second-container {
+.second-container,
+.light-mode,
+.dark-mode {
   height: 100vh;
   max-width: 80%;
   margin: 30px auto;
   border-radius: 10px;
   text-align: center;
-  color: rgb(49, 48, 48);
 }
 
 /*  LOGIN COMP STYLES */
@@ -33,10 +34,18 @@ body, html {
   height: 40px;
 }
 
+.create-user-link {
+  color:rgb(49, 48, 48);
+  text-decoration: none;
+}
+
+.create-user-link:hover {
+  color:rgb(191, 109, 230);
+}
 
 /* LOGIN and LOGOUT LINK STYLES */
 .login-link-div,
-.logout-link-div {
+.form-container button {
   text-align: center;
   margin: 20px auto;
   width: 100px;
@@ -49,14 +58,13 @@ body, html {
 }
 
 .login-link-div:active,
-.logout-link-div:active {
+.form-container button:active {
   box-shadow: 5px 5px 13px -3px rgba(16, 56, 2, 0) inset;
 -webkit-box-shadow: 5px 5px 13px -3px rgba(0,0,0,0) inset;
 -moz-box-shadow: 5px 5px 13px -3px rgba(0,0,0,0) inset;
 }
 
-.login-link,
-.logout-link {
+.login-link {
   color: white;
   text-decoration: none;
 }
@@ -83,7 +91,7 @@ body, html {
   height: 20px;
   width: 20px;
   border-radius: 100%;
-  background:rgb(2, 81, 61);
+  background:rgb(191, 109, 230);
   position: absolute;
 }
 
@@ -101,7 +109,12 @@ body, html {
 /* DARK MODE and LIGHT MODE */
 
 .light-mode {
-  color: black;
+  background: rgba(191, 109, 230, 0.05);
+  color: rgb(49, 48, 48);
+}
+
+.light-mode.second-container {
+  border:rgba(191, 109, 230, 0.05) solid 1px;
 }
 
 .dark-mode {
@@ -109,12 +122,17 @@ body, html {
   color: white;
 }
 
-.dark-mode h1 {
+.dark-mode h1,
+.dark-mode h2 {
   color:rgb(43, 198, 159)
 }
 
+.dark-mode.second-container {
+  border:rgb(49, 48, 48) solid 2px;
+}
+
 .dark-mode .login-link-div,
-.dark-mode .logout-link-div {
+.dark-mode button {
   background:rgb(43, 198, 159);
   color:rgb(49, 48, 48);
   box-shadow: 5px 5px 13px -3px rgba(18, 94, 58, 0.75);
@@ -131,4 +149,39 @@ body, html {
   padding: 0 10px;
   background:rgb(49, 48, 48);
   color: rgb(249, 246, 246);
+}
+
+.nav-container {
+  border: orange 2px solid;
+  display: flex;
+  align-items: center;
+}
+
+.nav-logout-link {
+  color:white;
+}
+
+/* CREATE USER COMP STYLES */
+.form-div {
+  margin: 30px auto;
+  width: 50%;
+  
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.form-container input {
+  margin: 20px;
+  height: 40px;
+  padding-left: 10px;
+}
+
+.form-container button {
+  border: none;
+  outline: none;
+  color: white;
 }
