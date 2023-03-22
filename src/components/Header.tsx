@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import Theme from "./Theme"
+import { FiLogOut } from "react-icons/fi"
 
 export default function Header(){
     return (
@@ -10,7 +11,7 @@ export default function Header(){
 
             <nav className="nav-container">
                 <div>
-                    <Link to={"/"} className="nav-logout-link">Logout</Link>
+                    <Link to={"/"} className="nav-logout-link"><FiLogOut className="logout-icon"/></Link>
                 </div>
                 <div className="toggle-theme-div">
                     <Theme />

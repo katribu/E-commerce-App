@@ -187,13 +187,18 @@ body, html {
 }
 
 .nav-container {
-  border: orange 2px solid;
   display: flex;
   align-items: center;
 }
 
 .nav-logout-link {
   color:var(--white);
+  margin-right: 20px;
+}
+
+.logout-icon {
+  height: 30px;
+  width: 30px;
 }
 
 /* CREATE USER COMP STYLES */
