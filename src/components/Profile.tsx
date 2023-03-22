@@ -5,11 +5,11 @@ import Theme from './Theme'
 
 export default function Profile() {
     const user = useAppSelector(state => state.user.value)
-   
-
+    const theme = useAppSelector(state => state.theme.value.theme)
+    const mode = useAppSelector(state => state.theme.value.isDarkMode)
     const dispatch = useAppDispatch()
     return(
-        <div className={`main-container `}>
+        <div className={`main-container ${mode? theme : ""}`}>
             <div className="toggle-theme-div">
                 <Theme />
             </div>
