@@ -8,11 +8,14 @@ body, html {
 }
 
 /* MAIN CONTAINER STYLES */
-.main-container {
-  max-width: 60%;
-  margin: 0 auto;
+
+.second-container {
   height: 100vh;
-  background: rgb(190, 240, 198);
+  max-width: 80%;
+  margin: 30px auto;
+  border-radius: 10px;
+  text-align: center;
+  color: rgb(49, 48, 48);
 }
 
 /*  LOGIN COMP STYLES */
@@ -21,6 +24,7 @@ body, html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 30px;
 }
 
 .login-input-div input {
@@ -35,17 +39,16 @@ body, html {
 .logout-link-div {
   text-align: center;
   margin: 20px auto;
-border: solid 2px white;
   width: 100px;
-  padding: 20px;
-  background: black;
+  padding: 10px;
+  background: rgb(49, 48, 48);
+  border-radius: 10px;
 }
 
 .login-link,
 .logout-link {
   color: white;
   text-decoration: none;
-  text-transform: uppercase;
 }
 
 /* PROFILE COMP STYLES */
@@ -57,8 +60,6 @@ border: solid 2px white;
 /* THEME COMP STYLES */
 .toggle-theme-div {
   padding: 10px 20px;
-  display: flex;
-  justify-content: flex-end;
 }
 .toggle-container {
   width: 40px;
@@ -87,12 +88,34 @@ border: solid 2px white;
   cursor: pointer;
 }
 
+/* DARK MODE and LIGHT MODE */
+
 .light-mode {
-  background: rgb(190, 240, 198);
   color: black;
 }
 
 .dark-mode {
-  background: rgb(2, 81, 61);
+  background: rgb(49, 48, 48);
   color: white;
+}
+
+.dark-mode h1 {
+  color:rgb(43, 198, 159)
+}
+
+.dark-mode .login-link-div,
+.dark-mode .logout-link-div {
+  background:rgb(43, 198, 159);
+  color:rgb(49, 48, 48);
+}
+
+/* HEADER COMP STYLES */
+.header-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  background:rgb(49, 48, 48);
+  color: rgb(249, 246, 246);
 }

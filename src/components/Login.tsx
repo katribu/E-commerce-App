@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
 import { login } from "../features/users"
 import {useState} from "react"
-import Theme from "./Theme"
+import Header from "./Header"
 
 
 
@@ -19,22 +19,26 @@ export default function Login() {
     const handlePassInput = (e:any) => {setPassword(e.target.value)}
 
     return (
-        <div className={`main-container ${mode? theme : ""}`}>
-            <div className="toggle-theme-div">
-                <Theme />
+        <div className={`main-container`}>
+            <div>
+                <Header/>
             </div>
-            <div className="login-input-div">
-                <input type="email" placeholder="Email" onChange={handleEmailInput} />
-                <input type="password" placeholder="Password" onChange={handlePassInput}  />
+
+            <div className={`second-container ${mode? theme : ""}`}>
+                <div className="login-input-div">
+                    <input type="email" placeholder="Email" onChange={handleEmailInput} />
+                    <input type="password" placeholder="Password" onChange={handlePassInput}  />
+                </div>
+                <div className="login-link-div">
+                    <Link 
+                        to={"/profile"} 
+                        onClick={()=>dispatch(login({email:email , password:password}))}
+                        className="login-link"
+                    >Log In 
+                    </Link>
+                </div>
             </div>
-            <div className="login-link-div">
-                <Link 
-                    to={"/profile"} 
-                    onClick={()=>dispatch(login({email:email , password:password}))}
-                    className="login-link"
-                >Log In 
-                </Link>
-            </div>
+            
             
         </div>
     )
