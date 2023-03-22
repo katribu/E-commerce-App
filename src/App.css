@@ -2,6 +2,16 @@
   box-sizing: border-box;
 }
 
+:root {
+  --lm-bg: rgba(191, 109, 230, 0.05);
+  --dark-txt-bg: rgb(49, 48, 48);
+  --purple-acc: rgb(191, 109, 230);
+  --turq-acc: rgb(43, 198, 159);
+  --white: white;
+  --box-shadow: 5px 5px 13px -3px rgba(0,0,0,0.75);
+  --box-shadow-inset: 5px 5px 13px -3px rgba(16, 56, 2, 0) inset;
+}
+
 body, html {
   padding: 0;
   margin: 0;
@@ -35,12 +45,12 @@ body, html {
 }
 
 .create-user-link {
-  color:rgb(49, 48, 48);
+  color:var(--dark-txt-bg);
   text-decoration: none;
 }
 
 .create-user-link:hover {
-  color:rgb(191, 109, 230);
+  color:var(--purple-acc);
 }
 
 /* LOGIN and LOGOUT LINK STYLES */
@@ -50,22 +60,23 @@ body, html {
   margin: 20px auto;
   width: 100px;
   padding: 10px;
-  background: rgb(49, 48, 48);
+  background: var(--dark-txt-bg);
   border-radius: 10px;
-  box-shadow: 5px 5px 13px -3px rgba(0,0,0,0.75);
--webkit-box-shadow: 5px 5px 13px -3px rgba(0,0,0,0.75);
--moz-box-shadow: 5px 5px 13px -3px rgba(0,0,0,0.75);
+  box-shadow: var(--box-shadow);
+-webkit-box-shadow: var(--box-shadow);
+-moz-box-shadow: var(--box-shadow);
 }
 
 .login-link-div:active,
 .form-container button:active {
-  box-shadow: 5px 5px 13px -3px rgba(16, 56, 2, 0) inset;
--webkit-box-shadow: 5px 5px 13px -3px rgba(0,0,0,0) inset;
--moz-box-shadow: 5px 5px 13px -3px rgba(0,0,0,0) inset;
+  box-shadow: var(--box-shadow-inset);
+-webkit-box-shadow: var(--box-shadow-inset);
+-moz-box-shadow: var(--box-shadow-inset);
 }
 
+
 .login-link {
-  color: white;
+  color: var(--white);
   text-decoration: none;
 }
 
@@ -91,12 +102,12 @@ body, html {
   height: 20px;
   width: 20px;
   border-radius: 100%;
-  background:rgb(191, 109, 230);
+  background:var(--purple-acc);
   position: absolute;
 }
 
 .new-toggle-pos {
-  background: rgb(43, 198, 159);
+  background: var(--turq-acc);
   position: absolute;
   left: 20px;
 }
@@ -108,36 +119,60 @@ body, html {
 
 /* DARK MODE and LIGHT MODE */
 
+/* ==== LIGHT MODE ==== */
+
 .light-mode {
-  background: rgba(191, 109, 230, 0.05);
-  color: rgb(49, 48, 48);
+  background: var(--lm-bg);
+  color: var(--dark-txt-bg) ;
 }
 
 .light-mode.second-container {
-  border:rgba(191, 109, 230, 0.05) solid 1px;
+  border:var(--lm-bg) solid 1px;
 }
 
+.light-mode .login-link-div:hover,
+.light-mode .form-container button:hover {
+  cursor: pointer;
+  background: var(--purple-acc);
+}
+
+/* === DARK MODE === */
+
 .dark-mode {
-  background: rgb(49, 48, 48);
-  color: white;
+  background: var(--dark-txt-bg);
+  color: var(--white);
 }
 
 .dark-mode h1,
 .dark-mode h2 {
-  color:rgb(43, 198, 159)
+  color:var(--turq-acc);
 }
 
 .dark-mode.second-container {
-  border:rgb(49, 48, 48) solid 2px;
+  border:var(--dark-txt-bg) solid 2px;
 }
 
 .dark-mode .login-link-div,
 .dark-mode button {
-  background:rgb(43, 198, 159);
-  color:rgb(49, 48, 48);
+  background:var(--turq-acc);
+  color:var(--dark-txt-bg);
   box-shadow: 5px 5px 13px -3px rgba(18, 94, 58, 0.75);
   -webkit-box-shadow: 5px 5px 13px -3px rgba(18, 94, 58,0.75);
   -moz-box-shadow: 5px 5px 13px -3px rgba(18, 94, 58,0.75);
+}
+
+.dark-mode .login-link-div:hover,
+.dark-mode .form-container button:hover {
+  cursor: pointer;
+  background:rgb(17, 82, 66)
+}
+
+.dark-mode .create-user-link {
+  color: var(--white);
+}
+
+.dark-mode .create-user-link:hover {
+  color: var(--turq-acc);
 }
 
 /* HEADER COMP STYLES */
@@ -147,7 +182,7 @@ body, html {
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
-  background:rgb(49, 48, 48);
+  background:var(--dark-txt-bg);
   color: rgb(249, 246, 246);
 }
 
@@ -158,7 +193,7 @@ body, html {
 }
 
 .nav-logout-link {
-  color:white;
+  color:var(--white);
 }
 
 /* CREATE USER COMP STYLES */
@@ -183,5 +218,5 @@ body, html {
 .form-container button {
   border: none;
   outline: none;
-  color: white;
+  color: var(--white);
 }
