@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useAppSelector, useAppDispatch } from '../app/hooks'
 import { logout } from '../features/users'
-// import Theme from './Theme'
 import Header from './Header'
 
 export default function Profile() {
@@ -26,7 +25,6 @@ export default function Profile() {
                     <Link 
                         to={"/"} 
                         onClick={()=>{
-                            console.log("logging out")
                             //doesn't reset to the empty string....
                             dispatch(logout())
                         }}
