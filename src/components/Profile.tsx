@@ -3,28 +3,33 @@ import Header from './Header'
 import { auth } from '../firebase/firebase-config'
 import { updateProfile } from 'firebase/auth'
 import { Mode } from '../interfaces'
-import { useState } from "react"
+import { useState,useEffect, useCallback } from "react"
 
 export default function Profile() {
     const theme:Mode["theme"] = useAppSelector(state => state.theme.value.theme)
     const mode:Mode["mode"] = useAppSelector(state => state.theme.value.isDarkMode)
 
-    const [newName, setNewName] = useState<string | null>("")
-
+    
     const user: any  = auth?.currentUser
     const name:string = user?.displayName
-    console.log(name)
+    const [newName, setNewName] = useState<string>(name)
 
-    const editName = async () => {
+    // when I refresh, the display name disappears.....
+    const editName = useCallback(async () => {
         try{
-           await updateProfile(user, {displayName: newName})
-        
-        }catch(err){
-            console.error(err)
-        }
-    }
+            if(!newName){
+                return;
+            }else{
+                await updateProfile(user, {displayName: newName})
+            }
+            }catch(err){
+                console.error(err)
+            }
+        },[user, newName])
 
-
+    useEffect(()=>{
+        editName()
+    },[editName])
 
     
     return(
@@ -46,7 +51,8 @@ export default function Profile() {
                     <h1>Welcome {name}!</h1>
                 </div>
                 <div>
-                    <p>Important information will go here.....</p>
+                    <p>Add a file.</p>
+                    <input type="file"/>
                 </div>
 
             </div>
