@@ -3,7 +3,7 @@
 }
 
 :root {
-  --lm-bg: rgba(191, 109, 230, 0.05);
+  --lm-bg: rgba(191, 109, 230, 0.25);
   --dark-txt-bg: rgb(49, 48, 48);
   --purple-acc: rgb(191, 109, 230);
   --turq-acc: rgb(43, 198, 159);
@@ -53,13 +53,20 @@ body, html {
   color:var(--purple-acc);
 }
 
-/* LOGIN and LOGOUT LINK STYLES */
-.login-link-div,
+/* LOGIN LINK STYLES */
+.login-link-div{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 300px;
+}
+
+.login-button button,
 .form-container button {
   text-align: center;
   margin: 20px auto;
-  width: 100px;
-  padding: 10px;
+  max-width: 180px;
+  padding: 10px 15px;
   background: var(--dark-txt-bg);
   border-radius: 10px;
   box-shadow: var(--box-shadow);
@@ -67,18 +74,22 @@ body, html {
 -moz-box-shadow: var(--box-shadow);
 }
 
-.login-link-div:active,
+.login-button button:active,
 .form-container button:active {
   box-shadow: var(--box-shadow-inset);
 -webkit-box-shadow: var(--box-shadow-inset);
 -moz-box-shadow: var(--box-shadow-inset);
 }
 
-
-.login-link {
+.login-button button,
+.form-container button {
   color: var(--white);
   text-decoration: none;
+  background: var(--dark-txt-bg);
+  border: none;
+  align-self: center;
 }
+
 
 /* PROFILE COMP STYLES */
 .profile-title {
@@ -130,8 +141,8 @@ body, html {
   border:var(--lm-bg) solid 1px;
 }
 
-.light-mode .login-link-div:hover,
-.light-mode .form-container button:hover {
+
+.light-mode button:hover {
   cursor: pointer;
   background: var(--purple-acc);
 }
@@ -152,7 +163,6 @@ body, html {
   border:var(--dark-txt-bg) solid 2px;
 }
 
-.dark-mode .login-link-div,
 .dark-mode button {
   background:var(--turq-acc);
   color:var(--dark-txt-bg);
@@ -161,10 +171,10 @@ body, html {
   -moz-box-shadow: 5px 5px 13px -3px rgba(18, 94, 58,0.75);
 }
 
-.dark-mode .login-link-div:hover,
-.dark-mode .form-container button:hover {
+.dark-mode button:hover{
   cursor: pointer;
-  background:rgb(17, 82, 66)
+  background:rgb(17, 82, 66);
+  color: var(--white);
 }
 
 .dark-mode .create-user-link {
@@ -218,10 +228,4 @@ body, html {
   margin: 20px;
   height: 40px;
   padding-left: 10px;
-}
-
-.form-container button {
-  border: none;
-  outline: none;
-  color: var(--white);
 }

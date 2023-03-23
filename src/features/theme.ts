@@ -6,7 +6,7 @@ interface Theme {
    isDarkMode: boolean;
   }
 }
-const initialState: Theme = {value: { theme: "", isDarkMode: false}};
+const initialState: Theme = {value: { theme: "dark-mode", isDarkMode: false}};
 
 export const themeSlice = createSlice({
   name: "theme",

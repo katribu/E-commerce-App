@@ -1,22 +1,45 @@
-import { Link } from "react-router-dom"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { login } from "../features/users"
+import { Link, useNavigate } from "react-router-dom"
+import { useAppSelector } from "../app/hooks"
 import {useState} from "react"
 import Header from "./Header"
+import { auth,googleProvider } from "../firebase/firebase-config"
+import { signInWithEmailAndPassword,signInWithPopup } from "firebase/auth"
+import { Mode } from "../interfaces"
 
 
 
 
 export default function Login() {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const navigate = useNavigate()
 
-    const theme = useAppSelector(state => state.theme.value.theme)
-    const mode = useAppSelector(state => state.theme.value.isDarkMode)
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
 
-    const dispatch = useAppDispatch()
+    const theme:Mode["theme"] = useAppSelector(state => state.theme.value.theme)
+    const mode: Mode["mode"] = useAppSelector(state => state.theme.value.isDarkMode)
+
     const handleEmailInput = (e:any) => {setEmail(e.target.value)}
     const handlePassInput = (e:any) => {setPassword(e.target.value)}
+
+    const signIn = async () => {
+        try{
+            if(email && password){
+                await signInWithEmailAndPassword(auth,email,password)
+                navigate("/profile")
+            }
+        }catch(err){
+            console.error(err)
+        }
+    }
+
+    const signInWithGoogle = async () => {
+        try {
+            await signInWithPopup(auth,googleProvider)
+            navigate("/profile")
+        } catch(err){
+            console.error(err)
+        }
+    }
 
     return (
         <div className={`main-container`}>
@@ -33,12 +56,19 @@ export default function Login() {
                     <Link to={"/createuser"} className="create-user-link">Create user</Link>
                 </div>
                 <div className="login-link-div">
-                    <Link 
-                        to={"/profile"} 
-                        onClick={()=>dispatch(login({email:email , password:password}))}
-                        className="login-link"
-                    >Log In 
-                    </Link>
+                    <div className="login-button">
+                        <button 
+                            onClick={signIn}
+                        >Log In 
+                        </button>
+                    </div>
+
+                    <div className="login-button">
+                        <button 
+                            onClick={signInWithGoogle} 
+                        >Google Log In
+                        </button>
+                    </div>
                 </div>
 
             </div>

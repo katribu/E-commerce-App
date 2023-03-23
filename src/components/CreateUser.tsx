@@ -1,10 +1,33 @@
 import Header from "./Header"
 import { useAppSelector } from "../app/hooks"
+import { useNavigate } from "react-router-dom"
+import { Mode } from "../interfaces"
+import {createUserWithEmailAndPassword} from "firebase/auth"
+import { auth } from "../firebase/firebase-config"
+import {useState} from "react"
+
 
 export default function CreateUser() {
+    const [email, setEmail] = useState<string>("")
+    const [password,setPassword] = useState<string>("")
 
-    const theme = useAppSelector(state => state.theme.value.theme)
-    const mode = useAppSelector(state => state.theme.value.isDarkMode)
+    const handleEmailInput = (e:any) => {setEmail(e.target.value)}
+    const handlePassInput = (e:any) => {setPassword(e.target.value)}
+
+    const navigate = useNavigate()
+    const theme: Mode["theme"] = useAppSelector(state => state.theme.value.theme)
+    const mode: Mode["mode"] = useAppSelector(state => state.theme.value.isDarkMode)
+
+    const redirect = async () => {
+        try {
+            if(email && password){
+                await createUserWithEmailAndPassword(auth,email,password)
+                navigate("/")
+            }
+        }catch(err){
+            console.error(err)
+        }
+    }
 
     return (
     <div className={`main-container`}>
@@ -18,11 +41,9 @@ export default function CreateUser() {
             </div>
             <div className="form-div" >
                 <form className="form-container">
-                    <input type="text" placeholder="Company Name"/>
-                    <input type="text" placeholder="First Name"/>
-                    <input type="text" placeholder="Last Name"/>
-                    <input type="text" placeholder="Email"/>
-                    <button type="submit">Submit</button>
+                    <input type="email" placeholder="Email" onChange={handleEmailInput} />
+                    <input type="password" placeholder="Password" onChange={handlePassInput}  />
+                    <button type="button" onClick={redirect}>Submit</button>
                 </form>
             </div>
 
