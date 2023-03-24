@@ -4,19 +4,24 @@ import { FiLogOut } from "react-icons/fi"
 import { signOut } from "firebase/auth"
 import { auth } from "../firebase/firebase-config"
 
-export default function Header(){
+interface NameProp {
+    userName?:string;
+}
+
+export default function Header({userName}: NameProp){
+    
 
     const logout = async () => {
         try{
             await signOut(auth)
         }catch(err){
             console.error(err)
-        }
+        }   
     }
     return (
         <header className="header-container">
             <div>
-                <h1>Welcome to TSP</h1>
+                <h1>Welcome {userName} to TSP</h1>
             </div>
 
             <nav className="nav-container">

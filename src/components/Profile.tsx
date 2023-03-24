@@ -1,41 +1,25 @@
-import { useAppSelector } from '../app/hooks'
+import { useAppSelector, useAppDispatch } from '../app/hooks'
+import { changeName } from '../features/users'
 import Header from './Header'
-import { auth } from '../firebase/firebase-config'
-import { updateProfile } from 'firebase/auth'
 import { Mode } from '../interfaces'
-import { useState,useEffect, useCallback } from "react"
+import { useState } from "react"
+// import { auth } from '../firebase/firebase-config'
+// import { updateProfile } from 'firebase/auth'
 
 export default function Profile() {
     const theme:Mode["theme"] = useAppSelector(state => state.theme.value.theme)
     const mode:Mode["mode"] = useAppSelector(state => state.theme.value.isDarkMode)
-
+    const myName:string = useAppSelector(state => state.user.name)
+    const dispatch = useAppDispatch()
     
-    const user: any  = auth?.currentUser
-    const name:string = user?.displayName
-    const [newName, setNewName] = useState<string>(name)
+    const [newName, setNewName] = useState<string>("")
 
-    // when I refresh, the display name disappears.....
-    const editName = useCallback(async () => {
-        try{
-            if(!newName){
-                return;
-            }else{
-                await updateProfile(user, {displayName: newName})
-            }
-            }catch(err){
-                console.error(err)
-            }
-        },[user, newName])
+   
 
-    useEffect(()=>{
-        editName()
-    },[editName])
-
-    
     return(
         <div className={`main-container`}>
             <div>
-                <Header />
+                <Header userName={myName} />
             </div>
 
             <div className={`second-container ${mode? theme : "light-mode"}`}>
@@ -43,16 +27,22 @@ export default function Profile() {
                     <input 
                         type="text" 
                         placeholder="Edit Name" 
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewName(e.target.value)}
+                        onChange={(e: any) => setNewName(e.target.value)}
                     />
-                    <button onClick={editName}>Edit Name</button>
+                    <button 
+                        onClick={()=> {
+                            dispatch(changeName(newName))
+                        }}
+                    >Edit Name
+                    </button>
                 </div>
                 <div className="profile-title">
-                    <h1>Welcome {name}!</h1>
+                    <h1>Welcome {myName}!</h1>
                 </div>
                 <div>
                     <p>Add a file.</p>
                     <input type="file"/>
+                    <button> Add </button>
                 </div>
 
             </div>

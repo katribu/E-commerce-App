@@ -61,33 +61,27 @@ body, html {
   width: 300px;
 }
 
-.login-button button,
-.form-container button {
+
+ button {
   text-align: center;
   margin: 20px auto;
   max-width: 180px;
   padding: 10px 15px;
   background: var(--dark-txt-bg);
   border-radius: 10px;
+  color: var(--white);
+  text-decoration: none;
+  border: none;
+  align-self: center;
   box-shadow: var(--box-shadow);
 -webkit-box-shadow: var(--box-shadow);
 -moz-box-shadow: var(--box-shadow);
 }
 
-.login-button button:active,
-.form-container button:active {
+button:active{
   box-shadow: var(--box-shadow-inset);
 -webkit-box-shadow: var(--box-shadow-inset);
 -moz-box-shadow: var(--box-shadow-inset);
-}
-
-.login-button button,
-.form-container button {
-  color: var(--white);
-  text-decoration: none;
-  background: var(--dark-txt-bg);
-  border: none;
-  align-self: center;
 }
 
 
