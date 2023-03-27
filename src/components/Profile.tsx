@@ -3,8 +3,7 @@ import { changeName } from '../features/users'
 import Header from './Header'
 import { Mode } from '../interfaces'
 import { useState } from "react"
-// import { auth } from '../firebase/firebase-config'
-// import { updateProfile } from 'firebase/auth'
+import { storage } from "../firebase/firebase-config"
 
 export default function Profile() {
     const theme:Mode["theme"] = useAppSelector(state => state.theme.value.theme)
@@ -12,7 +11,8 @@ export default function Profile() {
     const myName:string = useAppSelector(state => state.user.name)
     const dispatch = useAppDispatch()
     
-    const [newName, setNewName] = useState<string>("")
+    const [newName, setNewName] = useState<string>("");
+    const [fileUpload, setFileUpload] = useState<FileList | null>(null)
 
    
 
@@ -41,7 +41,7 @@ export default function Profile() {
                 </div>
                 <div>
                     <p>Add a file.</p>
-                    <input type="file"/>
+                    <input type="file" onChange={(e) => setFileUpload(e.target.files)}/>
                     <button> Add </button>
                 </div>
 

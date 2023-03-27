@@ -17,7 +17,6 @@ export default function CreateUser() {
     const navigate = useNavigate()
     const theme: Mode["theme"] = useAppSelector(state => state.theme.value.theme)
     const mode: Mode["mode"] = useAppSelector(state => state.theme.value.isDarkMode)
-    const myName:string = useAppSelector(state=> state.user.name)
 
     const redirect = async () => {
         try {
