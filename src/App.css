@@ -22,7 +22,7 @@ body, html {
 .second-container,
 .light-mode,
 .dark-mode {
-  height: 100vh;
+  /* height: 100vh; */
   max-width: 80%;
   margin: 30px auto;
   border-radius: 10px;
@@ -38,10 +38,12 @@ body, html {
   padding-top: 30px;
 }
 
-.login-input-div input {
+.login-input-div input,
+input {
   width: 50%;
   margin: 10px;
   height: 40px;
+  padding-left: 10px;
 }
 
 .create-user-link {
@@ -91,6 +93,17 @@ button:active{
   text-align: center;
 }
 
+.add-items-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type='checkbox'] {
+  height: 20px;
+  width: 20px;
+}
+
 /* THEME COMP STYLES */
 .toggle-theme-div {
   padding: 10px 20px;
@@ -135,10 +148,11 @@ button:active{
   border:var(--lm-bg) solid 1px;
 }
 
-
-.light-mode button:hover {
+.light-mode button:hover,
+input[type='checkbox'] {
   cursor: pointer;
   background: var(--purple-acc);
+  accent-color: var(--purple-acc);
 }
 
 /* === DARK MODE === */
@@ -165,10 +179,12 @@ button:active{
   -moz-box-shadow: 5px 5px 13px -3px rgba(18, 94, 58,0.75);
 }
 
-.dark-mode button:hover{
+.dark-mode button:hover,
+.dark-mode input[type='checkbox']{
   cursor: pointer;
   background:rgb(17, 82, 66);
   color: var(--white);
+  accent-color: var(--turq-acc);
 }
 
 .dark-mode .create-user-link {
@@ -220,6 +236,24 @@ button:active{
 
 .form-container input {
   margin: 20px;
-  height: 40px;
-  padding-left: 10px;
+}
+
+/* ITEMS COMP STYLES */
+.items-container {
+  border:var(--dark-txt-bg) 1px solid;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: space-evenly;
+  width: 80%;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.items-container p {
+  color: var(--dark-txt-bg)
+}
+.item {
+  background: white;
+  border-radius: 10px;
+  width: 150px;
 }
