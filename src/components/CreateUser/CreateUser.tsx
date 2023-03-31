@@ -1,10 +1,11 @@
-import Header from "./Header"
-import { useAppSelector } from "../app/hooks"
+import Header from "../Header/Header"
+import { useAppSelector } from "../../app/hooks"
 import { useNavigate } from "react-router-dom"
-import { Mode } from "../interfaces"
+import { Mode } from "../../utils/interfaces"
 import {createUserWithEmailAndPassword} from "firebase/auth"
-import { auth } from "../firebase/firebase-config"
+import { auth } from "../../firebase/firebase-config"
 import {useState} from "react"
+import "./createUser.css"
 
 
 export default function CreateUser() {

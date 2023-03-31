@@ -1,7 +1,5 @@
-import { changeMode } from "../features/theme"
-import { useAppDispatch,useAppSelector } from "../app/hooks"
-
-
+import { changeMode } from "../../slices/theme"
+import { useAppDispatch,useAppSelector } from "../../app/hooks"
 
 
 export default function Theme() {

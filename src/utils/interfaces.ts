@@ -4,9 +4,10 @@ export interface Mode {
 }
 
 export interface Items {
-    category: string;
-    inStock: boolean;
+    id: number;
+    title:string;
     price: number;
-    item: string;
-    id: string;
+    category: string;
+    description:string;
+    image: string;
 }

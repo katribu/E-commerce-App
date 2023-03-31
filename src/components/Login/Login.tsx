@@ -1,10 +1,11 @@
 import { Link, useNavigate } from "react-router-dom"
-import { useAppSelector } from "../app/hooks"
+import { useAppSelector } from "../../app/hooks"
 import {useState} from "react"
-import Header from "./Header"
-import { auth,googleProvider } from "../firebase/firebase-config"
+import Header from "../Header/Header"
+import { auth,googleProvider } from "../../firebase/firebase-config"
 import { signInWithEmailAndPassword,signInWithPopup } from "firebase/auth"
-import { Mode } from "../interfaces"
+import { Mode } from "../../utils/interfaces"
+import "./login.css"
 
 
 

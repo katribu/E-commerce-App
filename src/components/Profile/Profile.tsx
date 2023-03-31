@@ -1,10 +1,11 @@
-import { useAppSelector, useAppDispatch } from '../app/hooks'
-import { changeName } from '../features/users'
-import Header from './Header'
-import Item from './Item'
-import { Mode } from '../interfaces'
+import { useAppSelector, useAppDispatch } from '../../app/hooks'
+import { changeName } from '../../slices/users'
+import Header from '../Header/Header'
+import Item from '../Item/Item'
+import { Mode, Items } from '../../utils/interfaces'
 import { useState, useEffect } from "react"
 import axios from 'axios'
+import "./profile.css"
 
 
 //The reason why your useEffect hook is infinitely rendering is because of the 
@@ -12,15 +13,6 @@ import axios from 'axios'
 //When you define inventoryCollection variable, you are creating a new object reference on each render. 
 //This means that every time the component re-renders, inventoryCollection will be a new object reference, 
 //causing the useEffect to be re-triggered.
-
-interface Response {
-    id: number;
-    title: string;
-    price:string;
-    category:string;
-    description:string;
-    image:string;
-}
 
 export default function Profile() {
     const theme:Mode["theme"] = useAppSelector(state => state.theme.value.theme)
@@ -63,7 +55,7 @@ export default function Profile() {
 
         axios
             .request(options)
-            .then(function ({ data }: { data: Response }) {
+            .then(function ({ data }: { data: Items }) {
                 setInventoryList(data);
             })
             .catch(function (error: any) {
@@ -97,7 +89,8 @@ export default function Profile() {
                     </button>
 
                     <div>
-                    <h1>Inventory</h1>
+                    <h1>Let's Browse!</h1>
+                    <p>Category: Jewellery</p>
                     <div>
                     <Item inventory={inventoryList} />
                     </div>

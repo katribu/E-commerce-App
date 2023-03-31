@@ -1,0 +1,45 @@
+/* ITEMS COMP STYLES */
+.items-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-evenly;
+    width: 80%;
+    margin: 0 auto;
+    gap: 20px;
+  }
+  
+  .items-container p {
+    color: var(--dark-txt-bg)
+  }
+  .item {
+    background: white;
+    border-radius: 10px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0em 2em;
+    margin: 20px 0;
+    font-family: 'Quicksand', sans-serif;
+    
+  }
+  
+  .item-title-div {
+    flex: 1;
+    font-weight: 400;
+  }
+  
+  .item img{
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .item-img-div{
+    width: 100px;
+    max-height: 100px;        
+    flex: 1;
+    margin: 10px auto;
+  }
+  
+  .item-price-div {
+    font-weight: 700;
+  }

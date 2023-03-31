@@ -1,0 +1,24 @@
+/*  LOGIN COMP STYLES */
+.login-input-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+  }
+  
+  .create-user-link {
+    color:var(--dark-txt-bg);
+    text-decoration: none;
+  }
+  
+  .create-user-link:hover {
+    color:var(--purple-acc);
+  }
+
+  .login-link-div{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 300px;
+  }

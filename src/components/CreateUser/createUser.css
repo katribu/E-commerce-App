@@ -1,0 +1,17 @@
+/* CREATE USER COMP STYLES */
+.form-div {
+    margin: 30px auto;
+    max-width: 100%;
+    
+  }
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 90%;
+    margin: 0 auto;
+
+  }
+  
+  .form-container input {
+    margin: 20px auto;
+  }

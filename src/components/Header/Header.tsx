@@ -2,7 +2,8 @@ import { Link } from "react-router-dom"
 import Theme from "./Theme"
 import { FiLogOut } from "react-icons/fi"
 import { signOut } from "firebase/auth"
-import { auth } from "../firebase/firebase-config"
+import { auth } from "../../firebase/firebase-config"
+import "./header.css"
 
 interface NameProp {
     userName?:string;
