@@ -4,8 +4,7 @@ import Header from './Header'
 import Item from './Item'
 import { Mode } from '../interfaces'
 import { useState, useEffect } from "react"
-import { db } from '../firebase/firebase-config'
-import { getDocs, collection, addDoc } from 'firebase/firestore'
+import axios from 'axios'
 
 
 //The reason why your useEffect hook is infinitely rendering is because of the 
@@ -14,7 +13,14 @@ import { getDocs, collection, addDoc } from 'firebase/firestore'
 //This means that every time the component re-renders, inventoryCollection will be a new object reference, 
 //causing the useEffect to be re-triggered.
 
-const inventoryCollection = collection(db,"Inventory")
+interface Response {
+    id: number;
+    title: string;
+    price:string;
+    category:string;
+    description:string;
+    image:string;
+}
 
 export default function Profile() {
     const theme:Mode["theme"] = useAppSelector(state => state.theme.value.theme)
@@ -27,39 +33,42 @@ export default function Profile() {
     const [inventoryList, setInventoryList] = useState<any | null>(null)
 
     // Add new Item to Inventory states & clear input fields
-    const [category, setCategory] = useState<string>("")
-    const [item, setItem] = useState<string>("")
-    const [price, setPrice] = useState<number>(0)
-    const [isInStock, setIsInStock] = useState<boolean>(true)
+    // const [category, setCategory] = useState<string>("")
+    // const [item, setItem] = useState<string>("")
+    // const [price, setPrice] = useState<number>(0)
+    // const [isInStock, setIsInStock] = useState<boolean>(true)
 
     
-    const getInventoryList = async () => {
-            try{
-                const data = await getDocs(inventoryCollection)
-                const filteredData = data.docs?.map((doc) => ({...doc.data(), id:doc.id}))
-                setInventoryList(filteredData)
-                console.log("im the getInventoryList get request")
-            }catch(err){
-                console.error(err)
-            }
-    }
+   
     useEffect(() => {
-        getInventoryList()
+        getProducts()
     },[])
 
-    const onSubmitItem = async () => {
-        try{
-            await addDoc(inventoryCollection, {
-                category,
-                item,
-                price,
-                inStock: isInStock,
-            });
-            getInventoryList()
+    // const onSubmitItem = async () => {
+    //     try{
+    //         console.log('product added.')
+    //         getProducts()
 
-        }catch(err){
-            console.error(err)
+    //     }catch(err){
+    //         console.error(err)
+    //     }
+    // }
+
+    // axios fetch request from Fake Store API
+    const getProducts =  () => {
+        const options = {
+            method:'GET',
+            url: 'https://fakestoreapi.com/products',
         }
+
+        axios
+            .request(options)
+            .then(function ({ data }: { data: Response }) {
+                setInventoryList(data);
+            })
+            .catch(function (error: any) {
+                console.error(error);
+            });
     }
 
 
@@ -96,7 +105,7 @@ export default function Profile() {
 
                 </div>
                 
-                <div className="add-items-container">
+                {/* <div className="add-items-container">
                     <p>Add item to shop. </p>
                     <form>
                         <input type="text" placeholder="Category" onChange={(e)=>setCategory(e.target.value)}/>
@@ -110,7 +119,7 @@ export default function Profile() {
                 
                         <button type="button" onClick={onSubmitItem}>Submit</button>
                     </form>
-                </div>
+                </div> */}
 
             </div>
         </div>
