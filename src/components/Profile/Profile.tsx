@@ -12,12 +12,13 @@ export default function Profile() {
 
     const theme:Mode["theme"] = useAppSelector(state => state.theme.value.theme)
     const mode: Mode["mode"] = useAppSelector(state => state.theme.value.isDarkMode)
+    const myName:string = useAppSelector(state => state.user.name)
 
 
     return(
         <div className={`main-container`}>
              <div>
-                <Header />
+                <Header userName={myName}/>
             </div>
 
             <div className={`second-container ${mode? theme : "light-mode"}`}>

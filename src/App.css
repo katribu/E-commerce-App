@@ -38,7 +38,7 @@ input {
   padding-left: 10px;
   font-family: inherit;
   border-radius: 5px;
-  border:none;
+  border: 1px solid #ccc;
 }
 
  button {
