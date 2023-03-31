@@ -12,16 +12,27 @@
   .nav-container {
     display: flex;
     align-items: center;
+    background-color: var(--dark-txt-bg);
   }
   
-  .nav-logout-link {
+  .nav-link {
     color:var(--white);
     margin-right: 20px;
   }
   
-  .logout-icon {
+  .icon {
     height: 30px;
     width: 30px;
+  }
+
+.light-mode .icon:hover,
+.light-mode .icon:focus {
+    color: var(--coral-acc);
+  }
+
+  .dark-mode .icon:hover,
+  .dark-mode .icon:focus {
+    color: var(--turq-acc);
   }
 
   /* THEME COMP STYLES */
@@ -40,7 +51,7 @@
   height: 20px;
   width: 20px;
   border-radius: 100%;
-  background:var(--purple-acc);
+  background:var(--coral-acc);
   position: absolute;
 }
 

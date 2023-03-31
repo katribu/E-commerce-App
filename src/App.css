@@ -3,9 +3,9 @@
 }
 
 :root {
-  --lm-bg: rgba(191, 109, 230, 0.25);
+  --lm-bg: rgba(240,140,146,0.5);
   --dark-txt-bg: rgb(49, 48, 48);
-  --purple-acc: rgb(191, 109, 230);
+  --coral-acc: #F08C92;
   --turq-acc: rgb(43, 198, 159);
   --white: white;
   --box-shadow: 5px 5px 13px -3px rgba(0,0,0,0.75);
@@ -66,20 +66,16 @@ button:active{
 
 /* ==== LIGHT MODE ==== */
 
-.light-mode {
+.light-mode.second-container {
   background: var(--lm-bg);
   color: var(--dark-txt-bg) ;
-}
-
-.light-mode.second-container {
-  border:var(--lm-bg) solid 1px;
 }
 
 .light-mode button:hover,
 input[type='checkbox'] {
   cursor: pointer;
-  background: var(--purple-acc);
-  accent-color: var(--purple-acc);
+  background: var(--coral-acc);
+  accent-color: var(--coral-acc);
 }
 
 /* === DARK MODE === */

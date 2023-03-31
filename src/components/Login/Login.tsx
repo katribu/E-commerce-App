@@ -26,7 +26,7 @@ export default function Login() {
         try{
             if(email && password){
                 await signInWithEmailAndPassword(auth,email,password)
-                navigate("/profile")
+                navigate("/home")
             }
         }catch(err){
             console.error(err)
@@ -36,7 +36,7 @@ export default function Login() {
     const signInWithGoogle = async () => {
         try {
             await signInWithPopup(auth,googleProvider)
-            navigate("/profile")
+            navigate("/home")
         } catch(err){
             console.error(err)
         }
