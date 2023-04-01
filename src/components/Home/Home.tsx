@@ -1,5 +1,6 @@
 import { useAppSelector } from '../../app/hooks'
 import Header from '../Header/Header'
+import Category from '../CategoryList/Category'
 import Item from '../Item/Item'
 import { Mode, Items } from '../../utils/interfaces'
 import { useState, useEffect } from "react"
@@ -13,16 +14,34 @@ export default function Home() {
     const myName:string = useAppSelector(state => state.user.name)
     
     const [inventoryList, setInventoryList] = useState<any | null>(null)
+    const [allCategories, setAllCategories] = useState<string[]>(["Category"])
+    const [category, setCategory] = useState<string>(allCategories[0])
 
   
     useEffect(() => {
-        getProducts()
+        getCategories()
     },[])
 
+    //axios fetch request the categories
+    const getCategories = () => {
+        const options = {
+            method:'GET',
+            url:'https://fakestoreapi.com/products/categories',
+        }
+
+        axios
+            .request(options)
+            .then(function ({ data }) {
+                setAllCategories(data);
+            })
+            .catch(function (error: any) {
+                console.error(error);
+            });
+    }
  
 
     // axios fetch request from Fake Store API
-    const getProducts =  () => {
+    const renderAllProducts =  () => {
         const options = {
             method:'GET',
             url: 'https://fakestoreapi.com/products',
@@ -38,6 +57,21 @@ export default function Home() {
             });
     }
 
+    const renderChosenCategory = (category:string) => {
+        const options = {
+            method: 'GET',
+            url: `https://fakestoreapi.com/products/category/${category}`
+        }
+
+        axios 
+            .request(options)
+            .then(function ({ data }) {
+                console.log(data);
+            })
+            .catch(function (error: any) {
+                console.error(error);
+            });
+    }
 
     return(
         <div className={`main-container`}>
@@ -54,7 +88,18 @@ export default function Home() {
 
                 <div>
                     <h2>Let's Browse!</h2>
-                    <p>Category: Jewellery</p>
+                    <div className="category-div">
+                        <Category 
+                            onChange={option => {
+                                setCategory(option)
+                                console.log(option)
+                                renderChosenCategory(option)
+                            }}
+                            categoryList={allCategories} 
+                            category={category}
+                        />
+                        <button onClick={renderAllProducts}>Show All</button>
+                    </div>
                 </div>
                 
                 <div>

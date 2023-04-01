@@ -1,0 +1,86 @@
+.optionsContainer {
+    border: black solid 1px;
+    background: whitesmoke;
+    width: 120px;
+    height: 40px;
+    display: flex;
+    color: black;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+span {
+    flex: 1;
+    align-self: center;
+    padding-left: 10px;
+    text-align: center;
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 5px;
+}
+
+.divider {
+    border-left: 1px black solid;
+    margin: 5px;
+}
+
+.caret {
+    align-self: center;
+    border: 0.25em solid transparent;
+    border-top-color: #777;
+    margin-top: 3.5px;
+}
+
+.caret:hover {
+    cursor: pointer;
+}
+
+.category-options {
+    background: whitesmoke;
+    color: black;
+    width: 120px;
+    flex-direction: column;
+    border-radius: 5px;
+    position:absolute;
+}
+
+.category-list {
+    margin-top: 5px;
+    padding: 0;
+    max-height: 120px;
+    overflow-y: auto;
+    display: none;
+    border-radius: 5px;
+}
+
+.category-list.show {
+    display: block;
+    border-radius: 5px;
+}
+
+
+.category {
+    list-style: none;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.light-mode .category:focus,
+.light-mode .category:hover {
+    background: var(--coral-acc);
+    color: white;
+}
+
+.dark-mode .category:focus,
+.dark-mode .category:hover {
+    background: var(--turq-acc);
+    color: white;
+}
+
