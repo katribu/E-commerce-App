@@ -66,7 +66,7 @@ export default function Home() {
         axios 
             .request(options)
             .then(function ({ data }) {
-                console.log(data);
+                setInventoryList(data);
             })
             .catch(function (error: any) {
                 console.error(error);
@@ -92,13 +92,12 @@ export default function Home() {
                         <Category 
                             onChange={option => {
                                 setCategory(option)
-                                console.log(option)
                                 renderChosenCategory(option)
                             }}
                             categoryList={allCategories} 
                             category={category}
                         />
-                        <button onClick={renderAllProducts}>Show All</button>
+                        <button onClick={renderAllProducts}>All Categories</button>
                     </div>
                 </div>
                 
