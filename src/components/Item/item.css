@@ -42,4 +42,16 @@
   
   .item-price-div {
     font-weight: 700;
+    display:flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .item-price-div button {
+    margin: 0;
+  }
+  
+  .cart-icon {
+    height: 20px;
+    width: 20px;
   }
