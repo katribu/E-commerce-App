@@ -18,7 +18,7 @@ export default function Category({categoryList, onChange, category}:CategoryProp
     return (
         <div className="category-container">
             <div className="optionsContainer" onBlur={()=>setIsOpen(false)} onClick={()=> setIsOpen(!isOpen)}>
-                <span>{category}</span>
+                <span>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
                 <div className="buttonsContainer">
                     <div className="divider"></div>
                     <div className="caret"></div>
@@ -38,7 +38,7 @@ export default function Category({categoryList, onChange, category}:CategoryProp
                         }}
 
                         >
-                            {cat}
+                            {cat.charAt(0).toUpperCase() + cat.slice(1)}
                         </li>
                     ))}
                 </ul>

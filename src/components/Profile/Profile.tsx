@@ -1,7 +1,7 @@
 import { Mode } from "../../utils/interfaces"
 import { useAppSelector,useAppDispatch } from "../../app/hooks"
 import Header from "../Header/Header"
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import { changeName } from '../../slices/users'
 
 export default function Profile() {
@@ -12,6 +12,11 @@ export default function Profile() {
     const theme:Mode["theme"] = useAppSelector(state => state.theme.value.theme)
     const mode: Mode["mode"] = useAppSelector(state => state.theme.value.isDarkMode)
     const myName:string = useAppSelector(state => state.user.name)
+    const myCart = useAppSelector(state => state.cart)
+
+    useEffect(()=> {
+        console.log(myCart)
+    },[myCart])
 
     return(
         <div className={`main-container`}>
@@ -37,6 +42,7 @@ export default function Profile() {
                     >Edit Name
                     </button>
                 </div>
+
 
             </div>
         </div>

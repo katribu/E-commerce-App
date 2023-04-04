@@ -2,21 +2,23 @@
 import { Items } from "../../utils/interfaces"
 import { TiShoppingCart } from "react-icons/ti";
 import { useState } from "react"
+import { useAppDispatch } from "../../app/hooks";
 import './item.css'
+import { addItemToCart } from "../../slices/cart";
 
 interface ItemProps {
-    singleItems?: Items;
     inventory: Items[];
 }
 
 
 export default function Item({inventory}:ItemProps) {
-    const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false)
-    const [cart, setCart] = useState<ItemProps["inventory"]>([])
+    const [cart, setCart] = useState<React.SetStateAction<Items[]>>([])
 
-    const addToCart = (item: ItemProps["singleItems"]) => {
-        setIsAddedToCart(true)
-        setCart(item => ({...item}))
+    const dispatch = useAppDispatch()
+
+    const addToCart = (item: Items ) => {
+        setCart([item])
+        dispatch(addItemToCart(item))
         console.log(item)
     }
 

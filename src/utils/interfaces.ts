@@ -13,5 +13,5 @@ export interface Items {
     rating: {
         rate:number;
         count: number;
-    }
+    };
 }
