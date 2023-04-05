@@ -20,9 +20,9 @@ export default function Item({inventory, children}:ItemProps) {
         console.log(item)
     }
 
-    const renderInventoryItems = inventory?.map((item) => {
+    const renderInventoryItems = inventory?.map((item,i) => {
         return (
-            <div key={item.id} className="item">
+            <div key={i} className="item">
                 <div className="item-title-div">
                     <p>{item.title}</p>
                 </div>
