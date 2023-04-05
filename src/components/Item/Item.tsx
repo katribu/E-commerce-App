@@ -1,23 +1,21 @@
 
 import { Items } from "../../utils/interfaces"
-import { TiShoppingCart } from "react-icons/ti";
-import { useState } from "react"
+import { ReactNode } from "react"
 import { useAppDispatch } from "../../app/hooks";
 import './item.css'
 import { addItemToCart } from "../../slices/cart";
 
 interface ItemProps {
     inventory: Items[];
+    children?: ReactNode;
 }
 
 
-export default function Item({inventory}:ItemProps) {
-    const [cart, setCart] = useState<React.SetStateAction<Items[]>>([])
+export default function Item({inventory, children}:ItemProps) {
 
     const dispatch = useAppDispatch()
 
     const addToCart = (item: Items ) => {
-        setCart([item])
         dispatch(addItemToCart(item))
         console.log(item)
     }
@@ -35,7 +33,7 @@ export default function Item({inventory}:ItemProps) {
 
                 <div className="item-price-div">
                  <p>${item.price}</p>
-                 <button onClick={()=>addToCart(item)}><TiShoppingCart className="cart-icon"/></button>
+                 <button onClick={()=>addToCart(item)}>{children}</button>
                 </div>
             </div>
         )

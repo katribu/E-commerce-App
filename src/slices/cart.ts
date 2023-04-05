@@ -11,7 +11,7 @@ export const cartSlice = createSlice({
             const newItem = action.payload
             return [
                 ...state,
-                newItem
+                newItem,
             ]
         }
     }

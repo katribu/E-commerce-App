@@ -6,6 +6,7 @@ import { Mode, Items } from '../../utils/interfaces'
 import { useState, useEffect } from "react"
 import axios from 'axios'
 import "./home.css"
+import { TiShoppingCart } from "react-icons/ti";
 
 
 export default function Home() {
@@ -16,7 +17,6 @@ export default function Home() {
     const [inventoryList, setInventoryList] = useState<any | null>(null)
     const [allCategories, setAllCategories] = useState<string[]>(["Category"])
     const [category, setCategory] = useState<string>(allCategories[0])
-
   
     useEffect(() => {
         getCategories()
@@ -104,7 +104,10 @@ export default function Home() {
                 </div>
                 
                 <div>
-                    <Item inventory={inventoryList} />
+                    <Item 
+                    inventory={inventoryList} 
+                    children={<TiShoppingCart className="cart-icon"/>}
+                    />
                 </div>
 
             </div>

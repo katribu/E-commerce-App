@@ -3,6 +3,8 @@ import { useAppSelector,useAppDispatch } from "../../app/hooks"
 import Header from "../Header/Header"
 import {useState, useEffect} from "react"
 import { changeName } from '../../slices/users'
+import Item from "../Item/Item"
+import { AiFillDelete } from "react-icons/ai";
 
 export default function Profile() {
     const dispatch = useAppDispatch()
@@ -43,7 +45,10 @@ export default function Profile() {
                     </button>
                 </div>
 
-
+                <div>
+                    <h3> My Cart</h3>
+                    <Item inventory={myCart} children={<AiFillDelete/>}/>
+                </div>
             </div>
         </div>
     )
