@@ -47,7 +47,10 @@ export default function Profile() {
 
                 <div>
                     <h3> My Cart</h3>
-                    <Item inventory={myCart} children={<AiFillDelete/>}/>
+                    <Item 
+                    inventory={myCart} 
+                    children={<AiFillDelete/>}
+                    />
                 </div>
             </div>
         </div>

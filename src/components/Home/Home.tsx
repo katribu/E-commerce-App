@@ -106,7 +106,9 @@ export default function Home() {
                 <div>
                     <Item 
                     inventory={inventoryList} 
-                    children={<TiShoppingCart className="cart-icon"/>}
+                    children={<TiShoppingCart className="cart-icon"
+                    
+                    />}
                     />
                 </div>
 
