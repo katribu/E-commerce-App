@@ -9,11 +9,6 @@ import "./home.css"
 import { TiShoppingCart } from "react-icons/ti";
 import { addItemToCart } from '../../slices/cart'
 
-//Firebase imports
-import { db } from "../../firebase/firebase-config"
-import { collection, addDoc } from "firebase/firestore"
-
-const cartCollectionRef = collection(db, "cart")
 
 export default function Home() {
     const theme:Mode["theme"] = useAppSelector(state => state.theme.value.theme)
@@ -25,10 +20,6 @@ export default function Home() {
     const [category, setCategory] = useState<string>(allCategories[0])
 
     const dispatch = useAppDispatch()
-    
-    const addToFirebase = async (data: Items) => {
-        await addDoc(cartCollectionRef, data)
-    }
     
     useEffect(() => {
         getCategories()
@@ -122,7 +113,6 @@ export default function Home() {
                     inventory={inventoryList} 
                     children={<TiShoppingCart className="cart-icon" />}
                     onClick={(item)=>{
-                        addToFirebase(item)
                         dispatch(addItemToCart(item))
                     }}
                     />
