@@ -21,6 +21,11 @@ export default function Profile() {
         console.log(myCart)
     },[myCart])
 
+    const checkOutPrice = () => {
+        const total = myCart?.reduce((acc,prevValue) => acc + prevValue.price, 0)
+        console.log(total)
+    }
+
     return(
         <div className={`main-container`}>
              <div>
@@ -49,12 +54,16 @@ export default function Profile() {
                 <div>
                     <h3> My Cart</h3>
                     {myCart.length === 0 ? <p>You currently have no items in your cart.</p> :
+                    <div>
                     <Item 
                     inventory={myCart}
                     children={<AiFillDelete className="cart-icon" />}
                     onClick={(item)=>dispatch(deleteFromCart(item))}
-                    />}
+                    />
+                    <button onClick={checkOutPrice}>Checkout</button>
+                    </div>}
                 </div>
+
             </div>
         </div>
     )
