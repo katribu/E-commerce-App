@@ -30,6 +30,10 @@ body, html {
   text-align: center;
 }
 
+.second-container {
+  padding: 20px;
+}
+
 /* GENERAL STYLES STYLES */
 input {
   width: 300px;

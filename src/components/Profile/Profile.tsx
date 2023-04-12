@@ -48,11 +48,12 @@ export default function Profile() {
 
                 <div>
                     <h3> My Cart</h3>
+                    {myCart.length === 0 ? <p>You currently have no items in your cart.</p> :
                     <Item 
                     inventory={myCart}
                     children={<AiFillDelete className="cart-icon" />}
                     onClick={(item)=>dispatch(deleteFromCart(item))}
-                    />
+                    />}
                 </div>
             </div>
         </div>
