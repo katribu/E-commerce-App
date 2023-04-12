@@ -5,6 +5,7 @@ import {useState, useEffect} from "react"
 import { changeName } from '../../slices/users'
 import Item from "../Item/Item"
 import { AiFillDelete } from "react-icons/ai";
+import { deleteFromCart } from "../../slices/cart"
 
 export default function Profile() {
     const dispatch = useAppDispatch()
@@ -48,8 +49,9 @@ export default function Profile() {
                 <div>
                     <h3> My Cart</h3>
                     <Item 
-                    inventory={myCart} 
-                    children={<AiFillDelete/>}
+                    inventory={myCart}
+                    children={<AiFillDelete className="cart-icon" />}
+                    onClick={(item)=>dispatch(deleteFromCart(item))}
                     />
                 </div>
             </div>

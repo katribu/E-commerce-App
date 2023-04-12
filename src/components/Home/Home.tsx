@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../app/hooks'
+import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import Header from '../Header/Header'
 import Category from '../CategoryList/Category'
 import Item from '../Item/Item'
@@ -7,6 +7,8 @@ import { useState, useEffect } from "react"
 import axios from 'axios'
 import "./home.css"
 import { TiShoppingCart } from "react-icons/ti";
+import { addItemToCart } from '../../slices/cart'
+
 
 
 export default function Home() {
@@ -17,10 +19,16 @@ export default function Home() {
     const [inventoryList, setInventoryList] = useState<any | null>(null)
     const [allCategories, setAllCategories] = useState<string[]>(["Category"])
     const [category, setCategory] = useState<string>(allCategories[0])
-  
+
+    const dispatch = useAppDispatch()
+    
+    
+    
     useEffect(() => {
         getCategories()
     },[])
+
+  
 
     //axios fetch request the categories
     const getCategories = () => {
@@ -107,11 +115,14 @@ export default function Home() {
                     <Item 
                     inventory={inventoryList} 
                     children={<TiShoppingCart className="cart-icon" />}
+                    onClick={(item)=>dispatch(addItemToCart(item))}
                     />
+                    
                 </div>
 
             </div>
         </div>
     )
-
+    
 }
+

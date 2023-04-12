@@ -1,24 +1,17 @@
 
 import { Items } from "../../utils/interfaces"
 import { ReactNode } from "react"
-import { useAppDispatch } from "../../app/hooks";
 import './item.css'
-import { addItemToCart } from "../../slices/cart";
 
 interface ItemProps {
     inventory: Items[];
     children?: ReactNode;
+    onClick: (item: Items) => void;
 }
 
 
-export default function Item({inventory, children}:ItemProps) {
+export default function Item({inventory, children, onClick}:ItemProps) {
 
-    const dispatch = useAppDispatch()
-
-    const addToCart = (item: Items ) => {
-        dispatch(addItemToCart(item))
-        console.log(item)
-    }
 
     const renderInventoryItems = inventory?.map((item,i) => {
         return (
@@ -33,7 +26,7 @@ export default function Item({inventory, children}:ItemProps) {
 
                 <div className="item-price-div">
                  <p>${item.price}</p>
-                 <button onClick={()=>addToCart(item)}>{children}</button>
+                 <button onClick={()=> onClick(item)}>{children}</button>
                 </div>
             </div>
         )
