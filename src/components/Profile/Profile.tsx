@@ -6,6 +6,7 @@ import { changeName } from '../../slices/users'
 import Item from "../Item/Item"
 import { AiFillDelete } from "react-icons/ai";
 import { deleteFromCart } from "../../slices/cart"
+import './profile.css'
 
 export default function Profile() {
     const dispatch = useAppDispatch()
@@ -23,7 +24,7 @@ export default function Profile() {
 
     const checkOutPrice = () => {
         const total = myCart?.reduce((acc,prevValue) => acc + prevValue.price, 0)
-        console.log(total)
+        return total.toFixed(2)
     }
 
     return(
@@ -60,7 +61,7 @@ export default function Profile() {
                     children={<AiFillDelete className="cart-icon" />}
                     onClick={(item)=>dispatch(deleteFromCart(item))}
                     />
-                    <button onClick={checkOutPrice}>Checkout</button>
+                    <button>Checkout <span className="checkout-price">${checkOutPrice()}</span></button>
                     </div>}
                 </div>
 
