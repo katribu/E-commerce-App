@@ -4,13 +4,13 @@ import {getFirestore} from "firebase/firestore"
 import {getStorage} from "firebase/storage"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAlEB3rgkEC6k08hXcT-n2392adO4Qe6C8",
-  authDomain: "tsp-redux-firebase.firebaseapp.com",
-  projectId: "tsp-redux-firebase",
-  storageBucket: "tsp-redux-firebase.appspot.com",
-  messagingSenderId: "340371230000",
-  appId: "1:340371230000:web:afbbfcce175c28f14f4cf5",
-  measurementId: "G-K6XMWWBZ12"
+  apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID,
+  appId: process.env.REACT_APP_FIREBASE_APPID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID
 };
 
 // Initialize Firebase
