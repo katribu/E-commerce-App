@@ -2,16 +2,16 @@ import { Link, useNavigate } from "react-router-dom"
 import { useAppSelector } from "../../app/hooks"
 import {useState} from "react"
 import Header from "../Header/Header"
-import { auth,googleProvider } from "../../firebase/firebase-config"
-import { signInWithEmailAndPassword,signInWithPopup } from "firebase/auth"
 import { Mode } from "../../utils/interfaces"
 import "./login.css"
+import { useAuth } from "../../contexts/AuthContext"
 
 
 
 
 export default function Login() {
     const navigate = useNavigate()
+    const {login, loginWithGoogle} = useAuth()
 
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
@@ -25,7 +25,7 @@ export default function Login() {
     const signIn = async () => {
         try{
             if(email && password){
-                await signInWithEmailAndPassword(auth,email,password)
+                await login(email,password)
                 navigate("/home")
             }
         }catch(err){
@@ -35,7 +35,7 @@ export default function Login() {
 
     const signInWithGoogle = async () => {
         try {
-            await signInWithPopup(auth,googleProvider)
+            await loginWithGoogle()
             navigate("/home")
         } catch(err){
             console.error(err)

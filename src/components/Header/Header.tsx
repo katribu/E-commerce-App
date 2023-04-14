@@ -2,11 +2,10 @@ import { Link } from "react-router-dom"
 import Theme from "./Theme"
 import { FiLogOut, FiHome } from "react-icons/fi"
 import { CgProfile } from "react-icons/cg";
-import { signOut } from "firebase/auth"
-import { auth } from "../../firebase/firebase-config"
 import "./header.css"
 import { useAppSelector } from "../../app/hooks";
 import { Mode } from "../../utils/interfaces";
+import { useAuth } from "../../contexts/AuthContext";
 
 interface NameProp {
     userName?:string;
@@ -15,11 +14,13 @@ interface NameProp {
 export default function Header({userName}: NameProp){
     const theme:Mode["theme"] = useAppSelector(state => state.theme.value.theme)
     const mode: Mode["mode"] = useAppSelector(state => state.theme.value.isDarkMode)
+
+    const { logout } = useAuth()
     
 
-    const logout = async () => {
+    const signOut = async () => {
         try{
-            await signOut(auth)
+            await logout()
         }catch(err){
             console.error(err)
         }   
@@ -41,7 +42,7 @@ export default function Header({userName}: NameProp){
                         <CgProfile className="icon" />
                     </Link>
 
-                    <Link to={"/"} className="nav-link" onClick={logout}>
+                    <Link to={"/"} className="nav-link" onClick={signOut}>
                         <FiLogOut className="icon"/>
                     </Link>
 
