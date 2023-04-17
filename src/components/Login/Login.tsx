@@ -53,8 +53,9 @@ export default function Login() {
                     <input type="email" placeholder="Email" onChange={handleEmailInput} />
                     <input type="password" placeholder="Password" onChange={handlePassInput}  />
                 </div>
-                <div>
-                    <Link to={"/createuser"} className="create-user-link">Create user</Link>
+                <div className="link-div">
+                    <Link to={"/createuser"} className="create-user-link">Create Account</Link>
+                    <Link to={'/forgot-password'} className="create-user-link">Forgot Password?</Link>
                 </div>
                 <div className="login-link-div">
                     <div className="login-button">

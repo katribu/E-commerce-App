@@ -1,6 +1,6 @@
 import Header from "../Header/Header"
 import { useAppSelector } from "../../app/hooks"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { Mode } from "../../utils/interfaces"
 import {useState} from "react"
 import "./createUser.css"
@@ -56,7 +56,7 @@ export default function CreateUser() {
                     <input type="password" placeholder="Confirm Password" onChange={handleConfirmPass} required />
                     <button type="submit">Submit</button>
                 </form>
-
+                <Link to={"/"} className="create-user-link">Login</Link>
                 <p>{error}</p>
             </div>
 
