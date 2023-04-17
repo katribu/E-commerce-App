@@ -15,7 +15,7 @@ export default function Header({userName}: NameProp){
     const theme:Mode["theme"] = useAppSelector(state => state.theme.value.theme)
     const mode: Mode["mode"] = useAppSelector(state => state.theme.value.isDarkMode)
 
-    const { logout } = useAuth()
+    const { logout, currentUser } = useAuth()
     
 
     const signOut = async () => {
@@ -33,7 +33,8 @@ export default function Header({userName}: NameProp){
 
             <nav className="nav-container">
                 <div className={`${mode? theme : "light-mode"}`}>
-
+                     {currentUser &&
+                    <> 
                     <Link to="/home" className="nav-link">
                         <FiHome className="icon"/>
                     </Link>
@@ -41,7 +42,8 @@ export default function Header({userName}: NameProp){
                     <Link to="/profile" className="nav-link">
                         <CgProfile className="icon" />
                     </Link>
-
+                    </>}
+                    
                     <Link to={"/"} className="nav-link" onClick={signOut}>
                         <FiLogOut className="icon"/>
                     </Link>
