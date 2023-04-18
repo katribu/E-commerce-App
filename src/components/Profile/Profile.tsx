@@ -7,11 +7,13 @@ import Item from "../Item/Item"
 import { AiFillDelete } from "react-icons/ai";
 import { deleteFromCart } from "../../slices/cart"
 import './profile.css'
+import PaymentModal from "../PaymentModal/PaymentModal"
 
 export default function Profile() {
     const dispatch = useAppDispatch()
     
     const [newName, setNewName] = useState<string>("");
+    const [show, setShow] = useState<boolean>(false)
 
     const theme:Mode["theme"] = useAppSelector(state => state.theme.value.theme)
     const mode: Mode["mode"] = useAppSelector(state => state.theme.value.isDarkMode)
@@ -25,6 +27,10 @@ export default function Profile() {
     const checkOutPrice = () => {
         const total = myCart?.reduce((acc,prevValue) => acc + prevValue.price, 0)
         return total.toFixed(2)
+    }
+
+    const handleCheckOut = () => {
+        setShow(prevState => !prevState)
     }
 
     return(
@@ -61,8 +67,16 @@ export default function Profile() {
                     children={<AiFillDelete className="cart-icon" />}
                     onClick={(item)=>dispatch(deleteFromCart(item))}
                     />
-                    <button>Checkout <span className="checkout-price">${checkOutPrice()}</span></button>
+                    <button onClick={handleCheckOut}>Checkout <span className="checkout-price">${checkOutPrice()}</span></button>
                     </div>}
+                </div>
+                
+                <div>
+                <PaymentModal
+                show={show}
+                onClose={()=> setShow(false) }
+                cancel={() => setShow(false)}
+                />
                 </div>
 
             </div>
