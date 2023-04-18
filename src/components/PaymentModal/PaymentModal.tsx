@@ -18,6 +18,7 @@ export default function PaymentModal({show,onClose,cancel}:ModalProps){
                     <h4 className="modalTitle">
                         Credit Card Information
                     </h4>
+                    <div onClick={cancel} className='xModal'> X </div>
                 </div>
 
                 <div className="modalBody">
@@ -28,7 +29,7 @@ export default function PaymentModal({show,onClose,cancel}:ModalProps){
                     />
                     
                     <input 
-                    type="date"
+                    type="text"
                     placeholder="MM / YY"
                     onChange={event => (event.target.value)} 
                     />

@@ -10,6 +10,19 @@ align-items: center;
 justify-content: center;
 }
 
+.modalHeader {
+    display:flex;
+    justify-content: space-between;
+}
+
+.modalHeader h4 {
+    flex: 1;
+}
+
+.xModal {
+    cursor: pointer;
+}
+
 .modalContent {
 width: 400px;
 background: #fff;
