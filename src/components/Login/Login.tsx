@@ -50,6 +50,7 @@ export default function Login() {
 
             <div className={`second-container ${mode? theme : "light-mode"}`}>
                 <div className="login-input-div">
+                    <h3>Sign In</h3>
                     <input type="email" placeholder="Email" onChange={handleEmailInput} />
                     <input type="password" placeholder="Password" onChange={handlePassInput}  />
                 </div>

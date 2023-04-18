@@ -23,7 +23,9 @@ export default function ForgotPassword(){
             </div>
 
             <div className={`second-container ${mode? theme : "light-mode"}`}>
+                
                 <div className="login-input-div">
+                    <p>Enter your email to reset your password.</p>
                     <input type="email" placeholder="Email" onChange={handleEmailInput} />
                 </div>
                 <div className="link-div">
