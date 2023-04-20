@@ -41,7 +41,7 @@ export function AuthProvider({children}:any) {
     }
 
     function loginWithGoogle() {
-      return  signInWithPopup(auth,googleProvider)
+      return signInWithPopup(auth,googleProvider)
     }
 
     function passwordReset(email:string) {

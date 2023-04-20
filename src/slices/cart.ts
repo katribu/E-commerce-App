@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 
 //Firebase imports
 import { db } from "../firebase/firebase-config";
-import { doc,updateDoc } from "firebase/firestore"
+import { doc,updateDoc, arrayUnion } from "firebase/firestore"
 import { auth } from "../firebase/firebase-config";
 
 
@@ -15,7 +15,7 @@ interface cartItem extends Items {
 
 const updateUserCart = async (id:string , newItem: cartItem) => {
     const userDoc = doc(db, "users", id);
-    const newFields = { cart: newItem };
+    const newFields = { cart: arrayUnion(newItem) };
     await updateDoc(userDoc, newFields);
 };
 const initialState: cartItem[] = [];

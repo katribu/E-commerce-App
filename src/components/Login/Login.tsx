@@ -6,6 +6,10 @@ import { Mode } from "../../utils/interfaces"
 import "./login.css"
 import { useAuth } from "../../contexts/AuthContext"
 
+//Firebase imports
+import { db } from "../../firebase/firebase-config"
+import { doc,setDoc } from "firebase/firestore"
+
 
 
 
@@ -35,7 +39,19 @@ export default function Login() {
 
     const signInWithGoogle = async () => {
         try {
-            await loginWithGoogle()
+           await loginWithGoogle()
+           .then((res:any) => {
+            const uid = res.user.uid;
+            const data = {
+                email: res.user.email,
+                id: uid,
+                cart: [],
+            };
+            const userRef = doc(db,'users',uid)
+            setDoc(userRef, data)
+            .then(() => console.log("Logged In Successfully"))
+            .catch((err) => console.log(err.message))
+        });
             navigate("/home")
         } catch(err){
             console.error(err)
