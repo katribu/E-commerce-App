@@ -1,5 +1,6 @@
 import {useContext, useState, createContext, useEffect} from "react"
-import { auth,googleProvider } from "../firebase/firebase-config"
+import { auth,googleProvider,db } from "../firebase/firebase-config"
+import { doc, setDoc } from "firebase/firestore"
 import { 
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword, 
@@ -17,10 +18,23 @@ export function useAuth() {
 
 export function AuthProvider({children}:any) {
     const [currentUser, setCurrentUser] = useState<any>()
-
-    function signup(email:string,password:string) {
-        return createUserWithEmailAndPassword(auth,email,password)
+    
+    const signup = (email: string, password: string) => {
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((res) => {
+            const uid = res.user.uid;
+            const data = {
+                email,
+                id: uid,
+                cart: [],
+            };
+            const userRef = doc(db,'users',uid)
+            setDoc(userRef, data)
+            .then(() => console.log("Created New User Document Successfully"))
+            .catch((err) => console.log(err.message))
+        });
     }
+
 
     function login(email:string,password:string){
         return signInWithEmailAndPassword(auth,email,password)

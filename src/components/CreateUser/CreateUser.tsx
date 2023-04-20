@@ -5,9 +5,13 @@ import { Mode } from "../../utils/interfaces"
 import {useState} from "react"
 import "./createUser.css"
 import { useAuth } from "../../contexts/AuthContext"
+// import { auth, db } from "../../firebase/firebase-config"
+// import { collection,doc } from "firebase/firestore"
+// import { createUserWithEmailAndPassword } from "firebase/auth"
 
 
 export default function CreateUser() {
+   
 
     // States //
     const [email,setEmail] = useState<string>("")
@@ -31,13 +35,14 @@ export default function CreateUser() {
             return setError("The passwords do not match.")
         }
         try {
-            await signup(email, password)
+           await signup(email, password)
             navigate("/")
         }catch(err){
             console.error(err)
         }
         setError("")
     }
+
 
     return (
     <div className={`main-container`}>

@@ -3,19 +3,21 @@ import { Items } from "../utils/interfaces";
 import { v4 as uuid } from 'uuid';
 
 //Firebase imports
-// import { db } from "../firebase/firebase-config";
-// import { collection, addDoc } from "firebase/firestore"
+import { db } from "../firebase/firebase-config";
+import { doc,updateDoc } from "firebase/firestore"
+import { auth } from "../firebase/firebase-config";
+
 
 
 interface cartItem extends Items {
     cartId: string;
 }
 
-// const cartCollectionRef = collection(db, "cart")
-// const addToFirebase = async (data: cartItem) => {
-//     await addDoc(cartCollectionRef, data)
-// }
-
+const updateUserCart = async (id:string , newItem: cartItem) => {
+    const userDoc = doc(db, "users", id);
+    const newFields = { cart: newItem };
+    await updateDoc(userDoc, newFields);
+};
 const initialState: cartItem[] = [];
 
 export const cartSlice = createSlice({
@@ -27,7 +29,15 @@ export const cartSlice = createSlice({
                 ...action.payload,
                 cartId: uuid(),
             }
-            // addToFirebase(newItem)
+            auth.onAuthStateChanged(user => {
+                if (user){
+                    const uid = user.uid
+                    return updateUserCart(uid,newItem)
+                }
+                else {
+                    return;
+                }
+            })
             return [
                 ...state,
                 newItem
