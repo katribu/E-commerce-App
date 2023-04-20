@@ -6,7 +6,7 @@ import {
     signInWithEmailAndPassword, 
     signInWithPopup, 
     signOut,
-    sendPasswordResetEmail
+    sendPasswordResetEmail,
  } from "firebase/auth"
 
 
@@ -18,7 +18,7 @@ export function useAuth() {
 
 export function AuthProvider({children}:any) {
     const [currentUser, setCurrentUser] = useState<any>()
-    
+
     const signup = (email: string, password: string) => {
         createUserWithEmailAndPassword(auth, email, password)
         .then((res) => {

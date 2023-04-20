@@ -57,6 +57,7 @@ input {
   text-decoration: none;
   border: none;
   align-self: center;
+  cursor: pointer;
   box-shadow: var(--box-shadow);
 -webkit-box-shadow: var(--box-shadow);
 -moz-box-shadow: var(--box-shadow);
@@ -77,9 +78,7 @@ button:active{
   color: var(--dark-txt-bg) ;
 }
 
-.light-mode button:hover,
-input[type='checkbox'] {
-  cursor: pointer;
+.light-mode button:hover {
   background: var(--coral-acc);
   accent-color: var(--coral-acc);
 }
@@ -103,14 +102,9 @@ input[type='checkbox'] {
 .dark-mode button {
   background:var(--turq-acc);
   color:var(--dark-txt-bg);
-  box-shadow: 5px 5px 13px -3px rgba(18, 94, 58, 0.75);
-  -webkit-box-shadow: 5px 5px 13px -3px rgba(18, 94, 58,0.75);
-  -moz-box-shadow: 5px 5px 13px -3px rgba(18, 94, 58,0.75);
 }
 
-.dark-mode button:hover,
-.dark-mode input[type='checkbox']{
-  cursor: pointer;
+.dark-mode button:hover {
   background:rgb(17, 82, 66);
   color: var(--white);
   accent-color: var(--turq-acc);

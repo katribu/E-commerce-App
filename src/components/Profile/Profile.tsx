@@ -8,9 +8,16 @@ import { AiFillDelete } from "react-icons/ai";
 import { deleteFromCart } from "../../slices/cart"
 import './profile.css'
 import PaymentModal from "../PaymentModal/PaymentModal"
+import { useAuth } from "../../contexts/AuthContext"
+
+//Firestore imports
+import { doc, updateDoc, arrayRemove } from "firebase/firestore"
+import { db } from "../../firebase/firebase-config"
+
 
 export default function Profile() {
     const dispatch = useAppDispatch()
+    const {currentUser} = useAuth()
     
     const [newName, setNewName] = useState<string>("");
     const [show, setShow] = useState<boolean>(false)
@@ -31,6 +38,17 @@ export default function Profile() {
 
     const handleCheckOut = () => {
         setShow(prevState => !prevState)
+    }
+
+    const deleteFromFirebaseCart = async (cartItem:any) => {
+        const docRef = doc(db, "users", currentUser.uid);
+        try {
+            await updateDoc(docRef, {
+                cart: arrayRemove(cartItem)
+            });
+        }catch(err:any){
+            console.log(err.message)
+        }
     }
 
     return(
@@ -65,7 +83,10 @@ export default function Profile() {
                     <Item 
                     inventory={myCart}
                     children={<AiFillDelete className="cart-icon" />}
-                    onClick={(item)=>dispatch(deleteFromCart(item))}
+                    onClick={(item)=>{
+                        dispatch(deleteFromCart(item))
+                        deleteFromFirebaseCart(item)
+                    }}
                     />
                     <button onClick={handleCheckOut}>Checkout <span className="checkout-price">${checkOutPrice()}</span></button>
                     </div>}
