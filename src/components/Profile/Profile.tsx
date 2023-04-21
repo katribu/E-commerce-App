@@ -1,7 +1,7 @@
 import { Mode } from "../../utils/interfaces"
 import { useAppSelector,useAppDispatch } from "../../app/hooks"
 import Header from "../Header/Header"
-import {useState, useEffect } from "react"
+import {useState } from "react"
 import { changeName } from '../../slices/users'
 import Item from "../Item/Item"
 import { AiFillDelete } from "react-icons/ai";
@@ -27,10 +27,6 @@ export default function Profile() {
     const mode: Mode["mode"] = useAppSelector(state => state.theme.value.isDarkMode)
     const myName:string = useAppSelector(state => state.user.name)
     const myCart = useAppSelector(state => state.cart)
-
-    useEffect(()=> {
-        console.log(myCart)
-    },[myCart])
 
     const checkOutPrice = () => {
         const total = myCart?.reduce((acc,prevValue) => acc + prevValue.price, 0)

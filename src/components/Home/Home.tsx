@@ -56,7 +56,6 @@ export default function Home() {
             .request(options)
             .then(function ({ data }: { data: Items }) {
                 setInventoryList(data);
-                console.log(data)
             })
             .catch(function (error: any) {
                 console.error(error);
@@ -73,7 +72,6 @@ export default function Home() {
             .request(options)
             .then(function ({ data }) {
                 setInventoryList(data);
-                console.log(data)
             })
             .catch(function (error: any) {
                 console.error(error);
