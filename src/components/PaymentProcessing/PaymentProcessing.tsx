@@ -1,15 +1,24 @@
 import "./paymentProcessing.css"
+import { useEffect, useState } from "react";
 
-interface PaymentProcessingProps {
-    isComplete?: boolean;
-}
+export default function PaymentProcessing () {
+    const [isLoading, setIsLoading] = useState(true);
+   
+    useEffect(() => {
+        // Creating a timeout within the useEffect hook
+		setTimeout(() => {
+			setIsLoading(false);
+		}, 3000);
+    },[])
 
-export default function PaymentProcessing ({isComplete}:PaymentProcessingProps) {
+    if (isLoading) {
+		return <h3> Payment Processing . . . </h3>;
+	}
+
     return (
         <div className="loading-window-container">
             <div>
-            <h2>Payment Processing</h2>
-            <p>Payment Successfull!</p>
+            <h3 className="success">Payment Successful!</h3>
             </div>
         </div>
     )

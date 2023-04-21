@@ -13,11 +13,11 @@ justify-content: center;
 .modalHeader {
     display:flex;
     justify-content: space-between;
+    color: black;
 }
 
 .modalHeader h4 {
     flex: 1;
-    color: black;
 }
 
 .xModal {
@@ -41,20 +41,5 @@ margin: 0;
 padding: 10px;
 border-top: 1px solid #eee;
 border-bottom: 1px solid #eee;
-}
-
-.modalBtn {
-    background:#6a0203;
-    color:#eee;
-    font-family: inherit;
-    font-weight: 600;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-}
-
-.modalBtn:hover {
-cursor: pointer;
-background-color: #000;
+color:black;
 }
