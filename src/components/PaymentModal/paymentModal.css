@@ -17,6 +17,7 @@ justify-content: center;
 
 .modalHeader h4 {
     flex: 1;
+    color: black;
 }
 
 .xModal {

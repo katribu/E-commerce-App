@@ -1,19 +1,24 @@
+import PaymentProcessing from "../PaymentProcessing/PaymentProcessing";
 import "./paymentModal.css"
 
 interface ModalProps {
     show?: boolean;
-    onClose: () => void;
+    submit: () => void;
     cancel: () => void;
+    value:string;
+    isComplete: boolean;
 }
 
-export default function PaymentModal({show,onClose,cancel}:ModalProps){
+export default function PaymentModal({show,submit,cancel,value, isComplete}:ModalProps){
     if(!show){
         return null
     }
+    
 
     return (
         <div className="modal" onClick={cancel}>
             <div className="modalContent" onClick={(e)=>e.stopPropagation()}>
+                
                 <div className="modalHeader">
                     <h4 className="modalTitle">
                         Credit Card Information
@@ -22,36 +27,51 @@ export default function PaymentModal({show,onClose,cancel}:ModalProps){
                 </div>
 
                 <div className="modalBody">
+                {!isComplete ?
+                    <form>
                     <input 
                     type="text"
-                    placeholder="1234 1234 1234 1234"
+                    placeholder="1234567812345678"
+                    minLength={16}
+                    maxLength={16}
+                    required
                     onChange={event => (event.target.value)} 
                     />
                     
                     <input 
                     type="text"
                     placeholder="MM / YY"
+                    minLength={5}
+                    maxLength={5}
+                    required
                     onChange={event => (event.target.value)} 
                     />
 
                     <input
-                    type="number"
+                    type="text"
                     placeholder="CVC"
+                    minLength={3}
+                    maxLength={3}
+                    required
                     onChange={event => (event.target.value)} 
                     />
 
                     <input
-                    type="number"
-                    placeholder="Total"
-                    onChange={event => (event.target.value)} 
+                    type="string"
+                    readOnly
+                    value={`$${value}`}
                     />
                     
-                </div>
+                    <div className="modalFooter">
+                        <button onClick={submit}>Complete Payment</button>
+                    </div>
+                    </form> :
+                <div>
+                    <PaymentProcessing />
+                </div>}
+                </div> 
 
-                <div className="modalFooter">
-                    <button onClick={onClose}>Complete Payment</button>
-                </div>
-
+                
             </div>
 
         </div>

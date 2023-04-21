@@ -1,11 +1,11 @@
 import { Mode } from "../../utils/interfaces"
 import { useAppSelector,useAppDispatch } from "../../app/hooks"
 import Header from "../Header/Header"
-import {useState, useEffect} from "react"
+import {useState, useEffect } from "react"
 import { changeName } from '../../slices/users'
 import Item from "../Item/Item"
 import { AiFillDelete } from "react-icons/ai";
-import { deleteFromCart } from "../../slices/cart"
+import { deleteFromCart,resetToInitialState } from "../../slices/cart"
 import './profile.css'
 import PaymentModal from "../PaymentModal/PaymentModal"
 import { useAuth } from "../../contexts/AuthContext"
@@ -20,7 +20,8 @@ export default function Profile() {
     const {currentUser} = useAuth()
     
     const [newName, setNewName] = useState<string>("");
-    const [show, setShow] = useState<boolean>(false)
+    const [show, setShow] = useState<boolean>(false);
+    const [isComplete, setIsComplete] = useState<boolean>(false)
 
     const theme:Mode["theme"] = useAppSelector(state => state.theme.value.theme)
     const mode: Mode["mode"] = useAppSelector(state => state.theme.value.isDarkMode)
@@ -45,6 +46,17 @@ export default function Profile() {
         try {
             await updateDoc(docRef, {
                 cart: arrayRemove(cartItem)
+            });
+        }catch(err:any){
+            console.log(err.message)
+        }
+    }
+
+    const emptyFirebaseCart = async () => {
+        const docRef = doc(db, "users", currentUser.uid);
+        try {
+            await updateDoc(docRef, {
+                cart: []
             });
         }catch(err:any){
             console.log(err.message)
@@ -95,8 +107,15 @@ export default function Profile() {
                 <div>
                 <PaymentModal
                 show={show}
-                onClose={()=> setShow(false) }
+                submit={()=> {
+                    // setShow(false)
+                    emptyFirebaseCart()
+                    dispatch(resetToInitialState())
+                    setIsComplete(true)
+                }}
                 cancel={() => setShow(false)}
+                value={checkOutPrice()}
+                isComplete={isComplete}
                 />
                 </div>
 

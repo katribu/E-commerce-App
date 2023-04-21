@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom"
 import Theme from "./Theme"
 import { FiLogOut, FiHome } from "react-icons/fi"
-import { CgProfile } from "react-icons/cg";
+// import { CgProfile } from "react-icons/cg";
 import "./header.css"
 import { useAppSelector } from "../../app/hooks";
 import { Mode } from "../../utils/interfaces";
 import { useAuth } from "../../contexts/AuthContext";
+import { TiShoppingCart } from "react-icons/ti";
 
 interface NameProp {
     userName?:string;
@@ -40,7 +41,7 @@ export default function Header({userName}: NameProp){
                     </Link>
 
                     <Link to="/profile" className="nav-link">
-                        <CgProfile className="icon" />
+                        <TiShoppingCart className="icon" />
                     </Link>
                     </>}
                     

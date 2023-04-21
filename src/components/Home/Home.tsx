@@ -1,13 +1,13 @@
-import { useAppSelector, useAppDispatch } from '../../app/hooks'
-import Header from '../Header/Header'
-import Category from '../CategoryList/Category'
-import Item from '../Item/Item'
-import { Mode, Items } from '../../utils/interfaces'
-import { useState, useEffect } from "react"
-import axios from 'axios'
-import "./home.css"
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import Header from '../Header/Header';
+import Category from '../CategoryList/Category';
+import Item from '../Item/Item';
+import { Mode, Items } from '../../utils/interfaces';
+import { useState, useEffect } from "react";
+import axios from 'axios';
+import "./home.css";
 import { TiShoppingCart } from "react-icons/ti";
-import { addItemToCart } from '../../slices/cart'
+import { addItemToCart } from '../../slices/cart';
 
 
 export default function Home() {
