@@ -29,7 +29,7 @@ export default function Header({userName}: NameProp){
     return (
         <header className="header-container">
             <div>
-                <h1>Welcome {userName} to OSS</h1>
+                <h1>Welcome to OSS</h1>
             </div>
 
             <nav className="nav-container">

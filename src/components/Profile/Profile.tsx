@@ -2,7 +2,6 @@ import { Mode } from "../../utils/interfaces"
 import { useAppSelector,useAppDispatch } from "../../app/hooks"
 import Header from "../Header/Header"
 import {useState } from "react"
-import { changeName } from '../../slices/users'
 import Item from "../Item/Item"
 import { AiFillDelete } from "react-icons/ai";
 import { deleteFromCart,resetToInitialState } from "../../slices/cart"
@@ -19,13 +18,11 @@ export default function Profile() {
     const dispatch = useAppDispatch()
     const {currentUser} = useAuth()
     
-    const [newName, setNewName] = useState<string>("");
     const [show, setShow] = useState<boolean>(false);
     const [isComplete, setIsComplete] = useState<boolean>(false)
 
     const theme:Mode["theme"] = useAppSelector(state => state.theme.value.theme)
     const mode: Mode["mode"] = useAppSelector(state => state.theme.value.isDarkMode)
-    const myName:string = useAppSelector(state => state.user.name)
     const myCart = useAppSelector(state => state.cart)
 
     const checkOutPrice = () => {
@@ -62,30 +59,15 @@ export default function Profile() {
     return(
         <div className={`main-container`}>
              <div>
-                <Header userName={myName}/>
+                <Header />
             </div>
 
             <div className={`second-container ${mode? theme : "light-mode"}`}>
                 <div>
-                    <h2>My Settings</h2>
+                    <h2>My Cart</h2>
                 </div>
 
                 <div>
-                    <input 
-                        type="text" 
-                        placeholder="Change Username" 
-                        onChange={(e: any) => setNewName(e.target.value)}
-                    />
-                    <button 
-                        onClick={()=> {
-                            dispatch(changeName(newName))
-                        }}
-                    >Edit Name
-                    </button>
-                </div>
-
-                <div>
-                    <h3> My Cart</h3>
                     {myCart.length === 0 ? <p>You currently have no items in your cart.</p> :
                     <div>
                     <Item 

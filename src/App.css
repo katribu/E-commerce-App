@@ -24,7 +24,7 @@ body, html {
 .second-container,
 .light-mode,
 .dark-mode {
-  max-width: 80%;
+  max-width: 60%;
   margin: 30px auto;
   border-radius: 10px;
   text-align: center;

@@ -13,6 +13,7 @@
     display: flex;
     align-items: center;
     background-color: var(--dark-txt-bg);
+    width: 300px;
   }
   
   .nav-link {

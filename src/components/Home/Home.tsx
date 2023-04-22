@@ -13,7 +13,6 @@ import { addItemToCart } from '../../slices/cart';
 export default function Home() {
     const theme:Mode["theme"] = useAppSelector(state => state.theme.value.theme)
     const mode:Mode["mode"] = useAppSelector(state => state.theme.value.isDarkMode)
-    const myName:string = useAppSelector(state => state.user.name)
     
     const [inventoryList, setInventoryList] = useState<any | null>(null)
     const [allCategories, setAllCategories] = useState<string[]>(["Category"])
@@ -81,18 +80,17 @@ export default function Home() {
     return(
         <div className={`main-container`}>
             <div>
-                <Header userName={myName} />
+                <Header />
             </div>
 
             <div className={`second-container ${mode? theme : "light-mode"}`}>
                 <div>
                     <div className="profile-title">
-                        <h1>Welcome {myName}!</h1>
+                        <h1>Let's Browse!</h1>
                     </div>
                 </div>
 
                 <div>
-                    <h2>Let's Browse!</h2>
                     <div className="category-div">
                         <Category 
                             onChange={option => {
